@@ -1,4 +1,4 @@
-# V_Voice
+# VAST-Vtuber-Augmented-Sound-Archive
 voice dataset for VTB for neural network training. IN PROGRESS
 
 ### Raw data Google drive link
