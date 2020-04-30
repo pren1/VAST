@@ -19,8 +19,11 @@ This list explains the details of each raw data
 | [【空轴】デビュー配信から1ヶ月経ったみたい！](https://www.youtube.com/watch?v=vQzkm8CO37A) | 猫又  | 可用 | 有bgm | bgm处需要校正 |
 | [【空轴】【マリオカート】可愛い声縛り！7位以下で即終了！【ホロライブ_猫又おかゆ】](https://www.youtube.com/watch?v=AXwr1Nyzq-k) | 猫又  | 不可用 | 有bgm | 重新打吧 |
 | [【収益化記念】おにぎりあげる！【猫又おかゆ】](https://www.youtube.com/watch?v=HVqGLGm8StI) | 猫又  | 不可用 | 有bgm | 重新打吧 |
-| ---------- | -----------  | ----------- | ----------- | ----------- |
-| ---------- | -----------  | ----------- | ----------- | ----------- |
+| [【雑談】前髪は伸びる【猫又おかゆ】](https://www.youtube.com/watch?v=U4i5vAKCY3A) | 猫又  | 不可用 | 有bgm | 重新打吧 |
+| [【Vtuber】5分で分かる猫又おかゆ【公式】](https://www.youtube.com/watch?v=YAKJvA1ZZAU) | 猫又  | 不可用 | 有bgm | 很短，用作打轴man体验例子吧 |
+| [【Vtuber】大きなバックパックがある生活＃2【Stardew Valley】-B8sNGHFq1NY](https://www.youtube.com/watch?v=B8sNGHFq1NY) | 猫又  | 可用 | 有bgm | 可校正 |
+| [卡比p3【Vtuber】これがお望みのフルパワーだ【星のカービィ 夢の泉の物語】](https://www.youtube.com/watch?v=j9RuPurJDFE) | 猫又  | 可用 | 有bgm | 可校正 |
+| [【Vtuber】僕の暮らし＃1【Stardew Valley】](https://www.youtube.com/watch?v=qIm_XZo9_pw) | 猫又  | 不可用 | 有bgm | 重新打吧 |
 | ---------- | -----------  | ----------- | ----------- | ----------- |
 
 ### Process pipline
