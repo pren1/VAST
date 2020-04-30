@@ -16,6 +16,9 @@ This list explains the details of each raw data
 | [青鬼【検証】ホラー耐性と辛さ耐性ゼロが一度に摂取したら大丈夫説【バイノーラルホラゲ実況】](https://www.youtube.com/watch?v=Lq7OSuc8MoQ) | aki  | 可用 | 有bgm | 可不校正 |
 | [【#塩がゆ】あるようでなかった雑談配信【ホロライブ_猫又おかゆと紫咲シオン】]( https://www.youtube.com/watch?v=NLDLd8u3Vss&t=54s) | 猫又/紫咲  | 可用 | 有bgm | 可不校正 |
 | [(已复查)已校实轴【歌枠】僕は歌うのさ【Vtuber】](https://www.youtube.com/watch?v=AtTkFe6C3tA) | 猫又  | 可用 | 有bgm | 可以不校正 |
+| [【空轴】デビュー配信から1ヶ月経ったみたい！](https://www.youtube.com/watch?v=vQzkm8CO37A) | 猫又  | 可用 | 有bgm | bgm处需要校正 |
+| [【空轴】【マリオカート】可愛い声縛り！7位以下で即終了！【ホロライブ_猫又おかゆ】](https://www.youtube.com/watch?v=AXwr1Nyzq-k) | 猫又  | 不可用 | 有bgm | 重新打吧 |
+| [【収益化記念】おにぎりあげる！【猫又おかゆ】](https://www.youtube.com/watch?v=HVqGLGm8StI) | 猫又  | 不可用 | 有bgm | 重新打吧 |
 | ---------- | -----------  | ----------- | ----------- | ----------- |
 | ---------- | -----------  | ----------- | ----------- | ----------- |
 | ---------- | -----------  | ----------- | ----------- | ----------- |
