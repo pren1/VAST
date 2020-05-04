@@ -22,13 +22,12 @@ def interval_to_info(interval_seq):
 			in_interval = True
 		if label == 0 and in_interval:
 			start = index
-		in_interval = False
+			in_interval = False
 	if not in_interval:
 		res.append(np.asarray([start, len(interval_seq)]))
 	return np.asarray(res), Dur_info(np.asarray(res), len(interval_seq))
 
 def Dur_info(current_interval_info, whole_length):
-	'info about position during the interval'
 	during_turn_interval = []
 	for index in range(len(current_interval_info)):
 		if index == 0:
