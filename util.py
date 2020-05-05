@@ -66,3 +66,7 @@ def end_clip(array, threshold):
 		else:
 			return True, i
 	return False, -1
+
+def create_folders(directory):
+	if not os.path.exists(directory):
+		os.makedirs(directory)
