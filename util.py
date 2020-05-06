@@ -1,5 +1,7 @@
 import os
 import numpy as np
+import pdb
+
 def files_in_target_folder(path, extension=".opus"):
 	# obtain all file paths in the target folder
 	res_files=[]
@@ -70,3 +72,12 @@ def end_clip(array, threshold):
 def create_folders(directory):
 	if not os.path.exists(directory):
 		os.makedirs(directory)
+
+def save_data_array_as_npy(input_array, file_name):
+	np.save(file_name, input_array)
+
+def load_data_array_from_npy(file_name):
+	return np.load(file_name, allow_pickle=True)
+
+def return_download_dict(read_in_name = "file_name_dict.npy"):
+	return load_data_array_from_npy(read_in_name)
