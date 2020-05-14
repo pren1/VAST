@@ -1,7 +1,7 @@
 # VAST-Vtuber-Augmented-Sound-Archive
 voice dataset for VTB for neural network training.
 
-⚠ This program is simply not well documented, and in progress. Please **wait**
+⚠ This program is simply not well documented, and it is in progress. Please **wait**
 
 ### Dataset link <- ⚠ ️In progress!
 [Here](https://drive.google.com/drive/folders/1fr6fs3Q3069oMHHr8NSmksOfVz-f9mp3?usp=sharing)
