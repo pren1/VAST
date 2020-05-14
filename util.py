@@ -10,6 +10,12 @@ def files_in_target_folder(path, extension=".opus"):
 			res_files.append(file)
 	return res_files
 
+def get_all_sub_folders(path):
+	first_level_folders = [x[0] for x in os.walk(path)]
+	for first in first_level_folders:
+		second_level_folders = [f"{first}/" + x[0] for x in os.walk(first)]
+	return second_level_folders
+
 def stereoToMono(audiodata):
 	'turn 2d array to 1d'
 	return np.array(audiodata[:, 0] / 2 + audiodata[:, 1] / 2)
