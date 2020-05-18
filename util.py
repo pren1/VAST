@@ -87,3 +87,6 @@ def load_data_array_from_npy(file_name):
 
 def return_download_dict(read_in_name = "file_name_dict.npy"):
 	return load_data_array_from_npy(read_in_name)
+
+if __name__ == '__main__':
+	print(return_download_dict())
