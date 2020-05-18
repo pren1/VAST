@@ -14,19 +14,18 @@ def read_target_csv(path_to_csv):
 		dataset = [row[0] for row in reader]
 	return np.asarray(dataset)
 
-# output_dict = {'宝鐘マリン': [],
-#                '白上フブキ': [],
-#                '天音かなた': [],
-#                '夏色まつり': []}
+output_dict = {'宝鐘マリン': [],
+               '白上フブキ': [],
+               '天音かなた': [],
+               '夏色まつり': []}
 
-output_dict = {'白上フブキ': []}
+# output_dict = {'白上フブキ': []}
 
 root_path = 'Name_CSV/'
 
 for key in output_dict:
 	path = root_path + key + ".csv"
 	result = read_target_csv(path)
-	output_dict[key] = result[:3]
+	output_dict[key] = result
 
 save_data_array_as_npy(output_dict, "file_name_dict")
-pdb.set_trace()
