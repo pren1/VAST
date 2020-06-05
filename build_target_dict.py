@@ -19,7 +19,8 @@ output_dict = {'宝鐘マリン': [],
                '天音かなた': [],
                '夏色まつり': []}
 
-# output_dict = {'白上フブキ': []}
+output_dict = {'白上フブキ': [],
+               '夏色まつり': []}
 
 root_path = 'Name_CSV/'
 
