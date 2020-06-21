@@ -1,9 +1,3 @@
-[elephant](/下载.wav)
-
-<a href="下载.wav">elephant</a>
-
-<a href=下载.wav>elephant</a>
-
 <html lang="en">
   <head>
     <title>Play Sounds with JavaScript</title>
@@ -12,9 +6,6 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h1>Some JS to play sounds! 🎹</h1>
-    <p>This code uses the Web Audio API to play sounds in the browser.</p>
-
     <h2>Try it out</h2>
     <ul>
       <li><a href="#" onclick="playSound('dead'); return false;">Dead</a></li>
