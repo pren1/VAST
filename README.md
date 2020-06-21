@@ -1,6 +1,5 @@
 <html lang="en">
   <head>
-    <title>Play Sounds with JavaScript</title>
     <meta charset="utf-8">
     <script src="sounds.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
