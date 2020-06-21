@@ -4,7 +4,6 @@
 
 <a href=下载.wav>elephant</a>
 
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Play Sounds with JavaScript</title>
@@ -25,47 +24,6 @@
       <li><a href="#" onclick="playSound('jump');">Jump</a></li>
       <li><a href="#" onclick="playSound('coin');">Coin</a></li>
     </ul>
-
-    <h2>Usage</h2>
-
-    <p>
-      To get started, include the sounds.js file in <strong>head</strong> of your project.
-    </p>
-
-    <pre class="code">&lt;script src="sounds.js" type="text/javascript"&gt;&lt;/script&gt;</pre>
-
-    <p>Then edit the <strong>sounds</strong> object to add your sounds...
-
-    <pre class="code">
-"dead" : {
-  url : "sounds/dead.wav"
-},
-"ping" : {
-  url : "sounds/ping.mp3",
-  volume : .5
-}
-</pre>
-
-    <p>
-      The name of the sound above will be <strong>"dead"</strong>.
-      You can add an optional <strong>volume</strong> property, which can range from 0 to 1.
-    </p>
-
-    <h2>Playing a Sound</h2>
-
-    <p>To play a sound, call the method with the name of the sound.</p>
-    <div class="code-wrapper">
-      <pre class="code">playSound("dead");</pre>
-      <a href='#' onclick="playSound('dead'); return false;">🎹</a>
-    </div>
-
-
-    <p>You can also change the volume dynamically, like this...</p>
-    <div class="code-wrapper">
-      <pre class="code">playSound("dead", { volume: .4 });</pre>
-      <a href='#' onclick="playSound('dead', { volume: .4 }); return false;">🎹</a>
-    </div>
-
   </body>
 </html>
 
