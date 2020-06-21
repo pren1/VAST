@@ -1,3 +1,5 @@
+[elephant](/下载.wav)
+
 ### Introduction
 
 When the vtubers are streaming together, their voices sometimes get mixed. In this condition, it could be hard for the fansub members to figure out what the target vtuber is saying. So, we would like to propose a model that could filter the voices that come from different vtubers. In this way, the heavy burden of the fansub could get relieved. Thus, in this project, we come up with a model that could filter the mixed two vtuber voices. More vtubers will be taken into consideration in future work. Besides, we need more people to contribute to this project. Please feel free to contact me if you are willing to waste your time on these things :D
