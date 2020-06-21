@@ -68,7 +68,9 @@ The main idea of this model comes from the [Google paper](https://arxiv.org/abs/
 
    The code of this part could be found at [here](https://colab.research.google.com/drive/17KOywcQpox86Ey5CMGkioN-f5xWUBpTz?usp=sharing). For the model input, we also need to specify the target speaker. In this condition, an embedding vector that specifies the speaker is utilized as an extra input. For more details of this model, please refer to the original paper and our modified code. Here is the model structure:
 
-   
+   <p>
+    <img src="model (9).png"/>
+   </p>
 
    Note that we mainly modify the original model structure in the following ways.
 
