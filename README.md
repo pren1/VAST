@@ -1,23 +1,44 @@
-# VAST-Vtuber-Augmented-Sound-Archive
-voice dataset for VTB for neural network training.
+## Introduction
 
-⚠ This program is simply not well documented, and it is in progress. Please **wait**
+When the vtubers are streaming together, their voices sometimes get mixed. In this condition, it could be hard for the fansub members to figure out what the target vtuber is saying. So, we would like to propose a model that could filter the voices come from different vtubers. In this way, the heavy burden of the fansub could get relieved. Thus, in this project, we come up with a model that could filter the mixed two vtuber voices. More vtubers will be taken into consideration in the future work. Besides, we need more people to contribute to this project. So, please feel free to contact me if you are willing to waste your time on these things :D
 
-### Dataset link <- ⚠ ️In progress!
-[Here](https://drive.google.com/drive/folders/1fr6fs3Q3069oMHHr8NSmksOfVz-f9mp3?usp=sharing)
+## Related work
 
-### Supported vtuber names
+The main idea of this model comes from the Google paper. In this paper, the authors are able to filter a specific person's voice using the d-vector as an extra input. The pytorch code of this paper exists at here. However, we found that their model does not really work for the Japanese vtubers. That is, the dataset they used is not suitable for our task. So, it becomes necessary for us to build the dataset from scrach and modify the model to pursue better performance.
 
-* 宝鐘マリン
-* 白上フブキ
-* 天音かなた
-* 夏色まつり
+## Process pipline
 
-### Task list
-- [x] Select 16 suitable youtube video links for each vtuber 
-- [x] Use [youtube-dl](https://github.com/ytdl-org/youtube-dl.git) to extract the audio information
-- [x] Remove bgm using [spleeter](https://github.com/deezer/spleeter.git)
-- [x] Perform a simple [vad](https://pypi.org/project/pyvad/)
-- [x] train a [neural network](https://github.com/douglas125/SpeechCmdRecognition.git) to classify the speakers
-- [ ] Add more vtubers to the dataset
-- [ ] Try to use new models to split the overlapped voices (Which is challenging)
+1. ### Data collection
+   The code of this part could be found at here.
+   1. #### Data selection
+      So, suppose we would like to filter the mixed voices from speaker A and B. To do this, we first need to obtain the audio that only contains A's voice and B's voice. Then, as presented in the voice filter paper, one could easiliy mix the two person's voices and build a synthesis dataset to train the model. Thus, at the very beginning, we need to select the data by ourselves. That is, we go to the youtube and find the vedios that meet the requirement above.
+   2. #### Data download
+      The youtube-dl is utilized here. We directly extract the opus format audio using the --extract-audio command provided by the youtube-dl.
+   3. #### Audio signal processing
+      Since the videos may contain back ground music, one should remove the bgm first. Fortunetaly, the Spleeter model is ready to use, and it works well. The audios are then splitted and downsampled from 48000Hz to 8000Hz.
+2. ### Build dataset
+   The code of this part could be found at here.
+   1. #### Clip data
+      We clip the data into 3-second slices this time.
+   2. #### Data cleaning
+      If a speaker does not speak longer than 1.5 seconds within an audio slice, we just remove that. As it turns out, this data cleaning process is quite important for the model performance.
+   3. #### Data mixture and data augmentation
+      For better peroformance, we perform the data augmentation here. That is, for each audio signal sequence, we first normlaize it:
+          s1_target /= np.max(np.abs(s1_target))
+          s2 /= np.max(np.abs(s2))
+      Then, we multiply the two wave with two different ratios that are sampled from a uniform distribution. 
+          w1_ratio = np.random.uniform(low=0.05, high=1.2)
+          w2_ratio = np.random.uniform(low=0.05, high=1.2)
+          w1 = s1_target * w1_ratio
+          w2 = s2 * w2_ratio
+      After that, the two signals are added up, and they are normlaized again:
+          mixed = w1 + w2
+          norm = np.max(np.abs(mixed)) * 1.1
+          w1, w2, mixed = w1/norm, w2/norm, mixed/norm
+      Additionally, we use the Short-time Fourier transform technique to transfer the audio singals to the frequency domain.
+3. ### Model structure
+   The code of this part could be found at here. For the model input, we also need to specify the target speaker. In this condition, an embedding vector that specifies the speaker is utilized as an extra input. For more details of this model, please refer to the original paper and our modified code. Here is the model structure:
+   
+   Note that we mainly modify the original model structure in the following ways.
+   1. Add another bidirectional LSTM to enhance the model ability
+   2. The attention mechinism is implemented so that the model could focus on different parts of the CNN output when it generates the mask. (If you do not understand what the mask is, please read goolge's paper first!)
