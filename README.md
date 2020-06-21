@@ -12,7 +12,7 @@ The main idea of this model comes from the [Google paper](https://arxiv.org/abs/
 
    The code of this part could be found [here](https://colab.research.google.com/drive/1LYtwVfCYxlKUDYotXq-dauGZZ4aH-pix?usp=sharing).
 
-   1. ####Data selection
+   1. #### Data selection
 
       So, suppose we would like to filter the mixed voices from speakers A and B. To do this, we first need to obtain the audio that only contains A's voice and B's voice. Then, as presented in the voice filter paper, one could easily mix the two person's voices and build a synthesis dataset to train the model. Thus, at the very beginning, we need to select the data by ourselves. That is, we go to youtube and find the videos that meet the requirement above.
 
