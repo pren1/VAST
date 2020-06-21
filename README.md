@@ -1,9 +1,10 @@
+### Demo
+
 <html lang="en">
   <head>
-    <h2>Demo</h2>
     <meta charset="utf-8">
     <script src="sounds.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+<!--     <link rel="stylesheet" type="text/css" href="style.css" /> -->
   </head>
   <body>
     <ul>
