@@ -1,11 +1,11 @@
 <html lang="en">
   <head>
+    <h2>Demo</h2>
     <meta charset="utf-8">
     <script src="sounds.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h2>Try it out</h2>
     <ul>
       <li><a href="#" onclick="playSound('dead'); return false;">Dead</a></li>
       <li><a href="#" onclick="playSound('smash'); return false;">Smash</a></li>
@@ -17,15 +17,15 @@
   </body>
 </html>
 
-### Introduction
+## Introduction
 
 When the vtubers are streaming together, their voices sometimes get mixed. In this condition, it could be hard for the fansub members to figure out what the target vtuber is saying. So, we would like to propose a model that could filter the voices that come from different vtubers. In this way, the heavy burden of the fansub could get relieved. Thus, in this project, we come up with a model that could filter the mixed two vtuber voices. More vtubers will be taken into consideration in future work. Besides, we need more people to contribute to this project. Please feel free to contact me if you are willing to waste your time on these things :D
 
-### Related work
+## Related work
 
 The main idea of this model comes from the [Google paper](https://arxiv.org/abs/1810.04826). In this paper, the authors are able to filter a specific person's voice using the d-vector as an extra input. The PyTorch code of this paper exists [here](https://github.com/mindslab-ai/voicefilter.git). However, we found that their model does not really work for the Japanese vtubers. That is, the dataset they used is not suitable for our task. So, it becomes necessary for us to build the dataset from scratch and modify the model to pursue better performance.
 
-### Process pipline
+## Process pipline
 
 1. ### Data collection
 
