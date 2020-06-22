@@ -8,7 +8,7 @@
   </head>
   <body>
     <ul>
-      <li><a href="#" onclick="playSound('dead'); return false;">Dead</a></li>
+      <li><a href="#" onclick="playSound('sound/fbk_1.wav'); return false;">fbk_1</a></li>
       <li><a href="#" onclick="playSound('smash'); return false;">Smash</a></li>
       <li><a href="#" onclick="playSound('ping'); return false;">Ping</a></li>
       <li><a href="#" onclick="playSound('bump');">Bump</a></li>
