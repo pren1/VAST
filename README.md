@@ -1,6 +1,69 @@
 ### Demo
 
-你可以在[这里](https://pren1.github.io/VAST/)找到demo和文档
+<p>以下例子来自真实联动视频。正如我们将要看到的，模型成功的分离了两个vtuber的声音。</p>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="sounds.js" type="text/javascript"></script>
+<!--     <link rel="stylesheet" type="text/css" href="style.css" /> -->
+
+  <style>
+    table, th, td {
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: center;
+    }
+    th {
+      text-align: center;
+    }
+  </style>
+
+
+  </head>
+  <body>
+    <table style="width:100%">
+      <tr>
+        <th>Mixed voice</th>
+        <th>白上フブキ</th>
+        <th>夏色まつり</th>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_6'); return false;">Example_1</a></td>
+        <td><a href="#" onclick="playSound('fbk_6'); return false;">Fbk_1</a></td>
+        <td><a href="#" onclick="playSound('mazili_6'); return false;">Matsuri_1</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_5'); return false;">Example_2</a></td>
+        <td><a href="#" onclick="playSound('fbk_5'); return false;">Fbk_2</a></td>
+        <td><a href="#" onclick="playSound('mazili_5'); return false;">Matsuri_2</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_3'); return false;">Example_3</a></td>
+        <td><a href="#" onclick="playSound('fbk_3'); return false;">Fbk_3</a></td>
+        <td><a href="#" onclick="playSound('mazili_3'); return false;">Matsuri_3</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_4'); return false;">Example_4</a></td>
+        <td><a href="#" onclick="playSound('fbk_4'); return false;">Fbk_4</a></td>
+        <td><a href="#" onclick="playSound('mazili_4'); return false;">Matsuri_4</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_2'); return false;">Example_5</a></td>
+        <td><a href="#" onclick="playSound('fbk_2'); return false;">Fbk_5</a></td>
+        <td><a href="#" onclick="playSound('mazili_2'); return false;">Matsuri_5</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_1'); return false;">Example_6</a></td>
+        <td><a href="#" onclick="playSound('fbk_1'); return false;">Fbk_6</a></td>
+        <td><a href="#" onclick="playSound('mazili_1'); return false;">Matsuri_6</a></td>
+      </tr>
+    </table>
+  </body>
+</html>
 
 ### 介绍
 

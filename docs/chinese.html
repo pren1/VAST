@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Demo | VAST</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Demo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="voice dataset for VTB for voice filter training." />
+<meta property="og:description" content="voice dataset for VTB for voice filter training." />
+<link rel="canonical" href="https://pren1.github.io/VAST/" />
+<meta property="og:url" content="https://pren1.github.io/VAST/" />
+<meta property="og:site_name" content="VAST" />
+<script type="application/ld+json">
+{"@type":"WebSite","url":"https://pren1.github.io/VAST/","headline":"Demo","name":"VAST","description":"voice dataset for VTB for voice filter training.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/VAST/assets/css/style.css?v=7b19fb8a98c5aa65381772ab7695fad83b2476c0">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+
+      <h1><a href="https://pren1.github.io/VAST/">VAST</a></h1>
+
+<h3 id="介绍">介绍</h3>
+
+<p>Vtuber 联动时声音会混在一起，而这会对字幕组的工作造成困难。为了解决这个问题，我们提出了一个可以分离不同vtuber声音的模型。目前模型可以分离白上吹雪和夏色祭混合起来的声音，多个Vtuber的声音混合问题将会在下一步解决。顺便，诚招愿意在本项目上浪费时间的人。</p>
+
+<h3 id="相关工作">相关工作</h3>
+
+<p>本模型来源于谷歌的<a href="https://pren1.github.io/VAST/">这篇</a>论文。该论文提供了相关的Pytorch<a href="https://github.com/mindslab-ai/voicefilter.git">代码</a>。然而，因为数据库等等原因，我们发现该模型并不能直接用于Vtuber语音分离。因此，本项目从头对数据库进行了建立，并且对模型进行了优化更改。</p>
+
+<h3 id="项目流程">项目流程</h3>
+
+<ol>
+  <li>
+    <h4 id="数据收集">数据收集</h4>
+
+    <p>可以在<a href="https://colab.research.google.com/drive/1LYtwVfCYxlKUDYotXq-dauGZZ4aH-pix?usp=sharing">这里</a>找到相关代码.</p>
+
+    <ol>
+      <li>
+        <h5 id="数据选择">数据选择</h5>
+
+        <p>假设说话人A和B的声音混了起来，而我们要对他们的声音进行分离。首先，我们要获取只包含说话人A或说话人B的音轨。然后，如同谷歌的论文所指导，两种音轨将会被混合以用于训练。因此，我们需要首先人工选取音轨。在本项目中，音轨选自Vtuber的youtube相关频道。</p>
+      </li>
+      <li>
+        <h5 id="数据下载">数据下载</h5>
+
+        <p>本项目应用youtube-dl进行下载。利用 –extract-audio 选项，我们可以直接从视频中提取opus格式的音频。</p>
+      </li>
+      <li>
+        <h5 id="语音信号处理">语音信号处理</h5>
+
+        <p>因为音频可能会包含背景音乐，本项目使用现成的Spleeter模型进行背景音乐分离。之后，48000Hz的音频被降采样到8000Hz。</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <h4 id="数据库构建">数据库构建</h4>
+
+    <p>可以在<a href="https://colab.research.google.com/drive/1m-UXb9fIFwFDEANQf3eBLFopsmFgbtSd?usp=sharing">这里</a>找到相关代码.</p>
+
+    <ol>
+      <li>
+        <h5 id="数据分割">数据分割</h5>
+
+        <p>数据被切成三秒长的小段。</p>
+      </li>
+      <li>
+        <h5 id="数据清洗">数据清洗</h5>
+
+        <p>如果一小段语音中有一半时间没人说话，则舍弃之。从结果而言，这部分对模型表现非常重要。</p>
+      </li>
+      <li>
+        <h5 id="数据混合与数据增强">数据混合与数据增强</h5>
+
+        <p>首先，来自两个人的数据信号被归一化：</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s1_target</span> <span class="o">/=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">s1_target</span><span class="p">))</span>
+<span class="n">s2</span> <span class="o">/=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+</code></pre></div>        </div>
+
+        <p>然后，每条数据信号都按比例缩放。缩放比例来自一个连续型均匀分布。</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">w1_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">w2_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">s1_target</span> <span class="o">*</span> <span class="n">w1_ratio</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">s2</span> <span class="o">*</span> <span class="n">w2_ratio</span>
+</code></pre></div>        </div>
+
+        <p>之后，来自不同vtuber的数据信号被相加，并且进一步归一化：</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mixed</span> <span class="o">=</span> <span class="n">w1</span> <span class="o">+</span> <span class="n">w2</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">mixed</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.1</span>
+<span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">mixed</span> <span class="o">=</span> <span class="n">w1</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span> <span class="n">w2</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span> <span class="n">mixed</span><span class="o">/</span><span class="n">norm</span>
+</code></pre></div>        </div>
+
+        <p>再然后，运用短时傅里叶变换将音频信号转入频域。</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <h4 id="模型结构">模型结构</h4>
+
+    <p>这部分的相关代码可以在<a href="https://colab.research.google.com/drive/17KOywcQpox86Ey5CMGkioN-f5xWUBpTz?usp=sharing">这里</a>找到。需要注意的是，模型的输入中包含了一个代表说话人的映射向量。输入的说话人映射向量不同，模型分离出的说话人也将不同。如果想要得知更多的细节，请参照原论文以及我们修改过的模型代码。这是模型结构图：</p>
+
+    <p>
+ <img src="docs/model (9).png" />
+</p>
+    <p>我们主要对原始模型做了以下更改：</p>
+
+    <ol>
+      <li>增加了一个双向长短期记忆层。</li>
+      <li>应用了注意力机制。当模型产生遮罩时，它可以对卷积神经网络的输出分配不同的权重。（如果你看不懂这里的遮罩是什么，那证明你需要先去阅读谷歌的论文）</li>
+    </ol>
+  </li>
+</ol>
+
+
+
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/pren1/VAST/edit/master/README.md">Improve this page</a>.
+      </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+
+  </body>
+</html>
