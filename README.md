@@ -5,16 +5,35 @@
     <meta charset="utf-8">
     <script src="sounds.js" type="text/javascript"></script>
 <!--     <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: center;
+    }
+    th {
+      text-align: center;
+    }
+  </style>
+  
   </head>
   <body>
-    <ul>
-      <li><a href="#" onclick="playSound('fbk_1'); return false;">fbk_1_new</a></li>
-      <li><a href="#" onclick="playSound('smash'); return false;">Smash</a></li>
-      <li><a href="#" onclick="playSound('ping'); return false;">Ping</a></li>
-      <li><a href="#" onclick="playSound('bump');">Bump</a></li>
-      <li><a href="#" onclick="playSound('jump');">Jump</a></li>
-      <li><a href="#" onclick="playSound('coin');">Coin</a></li>
-    </ul>
+    <table style="width:100%">
+      <tr>
+        <th>mixed voice</th>
+        <th>白上フブキ</th> 
+        <th>夏色まつり</th>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_1'); return false;">mix_1</a></td>
+        <td><a href="#" onclick="playSound('fbk_1'); return false;">fbk_1</a></td>
+        <td><a href="#" onclick="playSound('mazili_1'); return false;">Matsuri_1</a></td>
+      </tr>
+    </table>
   </body>
 </html>
 

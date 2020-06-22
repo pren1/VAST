@@ -2,20 +2,56 @@ var sounds = {
   "fbk_1" : {
     url : "sounds/fbk_1.wav"
   },
-  "smash" : {
-    url : "sounds/smash.mp3",
+  "fbk_2" : {
+    url : "sounds/fbk_2.wav"
   },
-  "ping" : {
-    url : "sounds/ping.mp3"
+  "fbk_3" : {
+    url : "sounds/fbk_3.wav"
   },
-  "bump" : {
-    url : "sounds/bump.mp3"
+  "fbk_4" : {
+    url : "sounds/fbk_4.wav"
   },
-  "jump" : {
-    url : "sounds/jump.wav"
+  "fbk_5" : {
+    url : "sounds/fbk_5.wav"
   },
-  "coin" : {
-    url : "sounds/coin.mp3"
+  "fbk_6" : {
+    url : "sounds/fbk_6.wav"
+  },
+  "mazili_1" : {
+    url : "sounds/mazili_1.wav",
+  },
+  "mazili_2" : {
+    url : "sounds/mazili_2.wav",
+  },
+  "mazili_3" : {
+    url : "sounds/mazili_3.wav",
+  },
+  "mazili_4" : {
+    url : "sounds/mazili_4.wav",
+  },
+  "mazili_5" : {
+    url : "sounds/mazili_5.wav",
+  },
+  "mazili_6" : {
+    url : "sounds/mazili_6.wav",
+  },
+  "mix_1" : {
+    url : "sounds/mix_1.wav"
+  },
+  "mix_2" : {
+    url : "sounds/mix_2.wav"
+  },
+  "mix_3" : {
+    url : "sounds/mix_3.wav"
+  },
+  "mix_4" : {
+    url : "sounds/mix_4.wav"
+  },
+  "mix_5" : {
+    url : "sounds/mix_5.wav"
+  },
+  "mix_6" : {
+    url : "sounds/mix_6.wav"
   }
 };
 
