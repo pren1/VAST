@@ -73,7 +73,7 @@ Vtuber 联动时声音会混在一起，而这会对字幕组的工作造成困�
    这部分的相关代码可以在[这里](https://colab.research.google.com/drive/17KOywcQpox86Ey5CMGkioN-f5xWUBpTz?usp=sharing)找到。需要注意的是，模型的输入中包含了一个代表说话人的映射向量。输入的说话人映射向量不同，模型分离出的说话人也将不同。如果想要得知更多的细节，请参照原论文以及我们修改过的模型代码。这是模型结构图：
 
    <p>
-    <img src="model (9).png"/>
+    <img src="docs/model (9).png"/>
    </p>
    我们主要对原始模型做了以下更改：
 
