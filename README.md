@@ -5,10 +5,10 @@ The following examples come from real videos. As we can see, the voices from the
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<!--     <script src="sounds.js" type="text/javascript"></script> -->
+    <script src="sounds.js" type="text/javascript"></script>
 <!--     <link rel="stylesheet" type="text/css" href="style.css" /> -->
   
-<!--     <style>
+  <style>
     table, th, td {
       border: 2px solid black;
       border-collapse: collapse;
@@ -21,7 +21,6 @@ The following examples come from real videos. As we can see, the voices from the
       text-align: center;
     }
   </style>
--->  
   
   
   </head>
