@@ -1,3 +1,7 @@
+### Bilingual version readme
+
+[Chinese version]()
+
 ### Demo
 
 You could find the demo and documentation at [here](https://pren1.github.io/VAST/)
