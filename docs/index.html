@@ -1,1 +1,225 @@
-HI WORLD
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Demo | VAST</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Demo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="voice dataset for VTB for voice filter training." />
+<meta property="og:description" content="voice dataset for VTB for voice filter training." />
+<link rel="canonical" href="https://pren1.github.io/VAST/" />
+<meta property="og:url" content="https://pren1.github.io/VAST/" />
+<meta property="og:site_name" content="VAST" />
+<script type="application/ld+json">
+{"@type":"WebSite","url":"https://pren1.github.io/VAST/","headline":"Demo","name":"VAST","description":"voice dataset for VTB for voice filter training.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/VAST/assets/css/style.css?v=00da024f1ccde56e7dad165d3724f91ee6f03102">
+    <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+    <script src="/VAST/assets/js/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>VAST</h1>
+        <p>voice dataset for VTB for voice filter training.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/pren1/VAST" class="button fork"><strong>View On GitHub</strong></a>
+
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h3 id="demo">Demo</h3>
+
+<p>The following examples come from real videos. As we can see, the voices from the two vtubers get filtered properly.</p>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="sounds.js" type="text/javascript"></script>
+<!--     <link rel="stylesheet" type="text/css" href="style.css" /> -->
+
+  <style>
+    table, th, td {
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: center;
+    }
+    th {
+      text-align: center;
+    }
+  </style>
+
+
+  </head>
+  <body>
+    <table style="width:100%">
+      <tr>
+        <th>Mixed voice</th>
+        <th>白上フブキ</th>
+        <th>夏色まつり</th>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_6'); return false;">Example_1</a></td>
+        <td><a href="#" onclick="playSound('fbk_6'); return false;">Fbk_1</a></td>
+        <td><a href="#" onclick="playSound('mazili_6'); return false;">Matsuri_1</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_5'); return false;">Example_2</a></td>
+        <td><a href="#" onclick="playSound('fbk_5'); return false;">Fbk_2</a></td>
+        <td><a href="#" onclick="playSound('mazili_5'); return false;">Matsuri_2</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_3'); return false;">Example_3</a></td>
+        <td><a href="#" onclick="playSound('fbk_3'); return false;">Fbk_3</a></td>
+        <td><a href="#" onclick="playSound('mazili_3'); return false;">Matsuri_3</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_4'); return false;">Example_4</a></td>
+        <td><a href="#" onclick="playSound('fbk_4'); return false;">Fbk_4</a></td>
+        <td><a href="#" onclick="playSound('mazili_4'); return false;">Matsuri_4</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_2'); return false;">Example_5</a></td>
+        <td><a href="#" onclick="playSound('fbk_2'); return false;">Fbk_5</a></td>
+        <td><a href="#" onclick="playSound('mazili_2'); return false;">Matsuri_5</a></td>
+      </tr>
+      <tr>
+        <td><a href="#" onclick="playSound('mix_1'); return false;">Example_6</a></td>
+        <td><a href="#" onclick="playSound('fbk_1'); return false;">Fbk_6</a></td>
+        <td><a href="#" onclick="playSound('mazili_1'); return false;">Matsuri_6</a></td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>When the vtubers are streaming together, their voices sometimes get mixed. In this condition, it could be hard for the fansub members to figure out what the target vtuber is saying. So, we would like to propose a model that could filter the voices that come from different vtubers. In this way, the heavy burden of the fansub could get relieved. Thus, in this project, we come up with a model that could filter the mixed two vtuber voices. More vtubers will be taken into consideration in future work. Besides, we need more people to contribute to this project. Please feel free to contact me if you are willing to waste your time on these things :D</p>
+
+<h3 id="related-work">Related work</h3>
+
+<p>The main idea of this model comes from the <a href="https://arxiv.org/abs/1810.04826">Google paper</a>. In this paper, the authors are able to filter a specific person’s voice using the d-vector as an extra input. The PyTorch code of this paper exists <a href="https://github.com/mindslab-ai/voicefilter.git">here</a>. However, we found that their model does not really work for the Japanese vtubers. That is, the dataset they used is not suitable for our task. So, it becomes necessary for us to build the dataset from scratch and modify the model to pursue better performance.</p>
+
+<h3 id="process-pipline">Process pipline</h3>
+
+<ol>
+  <li>
+    <h4 id="data-collection">Data collection</h4>
+
+    <p>The code of this part could be found <a href="https://colab.research.google.com/drive/1LYtwVfCYxlKUDYotXq-dauGZZ4aH-pix?usp=sharing">here</a>.</p>
+
+    <ol>
+      <li>
+        <h5 id="data-selection">Data selection</h5>
+
+        <p>So, suppose we would like to filter the mixed voices from speakers A and B. To do this, we first need to obtain the audio that only contains A’s voice and B’s voice. Then, as presented in the voice filter paper, one could easily mix the two person’s voices and build a synthesis dataset to train the model. Thus, at the very beginning, we need to select the data by ourselves. That is, we go to youtube and find the videos that meet the requirement above.</p>
+      </li>
+      <li>
+        <h5 id="data-download">Data download</h5>
+
+        <p>The youtube-dl is utilized here. We directly extract the opus format audio using the –extract-audio command provided by the youtube-dl.</p>
+      </li>
+      <li>
+        <h5 id="audio-signal-processing">Audio signal processing</h5>
+
+        <p>Since the videos may contain background music, one should remove the bgm first. Fortunately, the <a href="https://github.com/deezer/spleeter.git">Spleeter model</a> is ready to use, and it works well. The audios are then split and downsampled from 48000Hz to 8000Hz.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <h4 id="build-dataset">Build dataset</h4>
+
+    <p>The code of this part could be found <a href="https://colab.research.google.com/drive/1m-UXb9fIFwFDEANQf3eBLFopsmFgbtSd?usp=sharing">here</a>.</p>
+
+    <ol>
+      <li>
+        <h5 id="clip-data">Clip data</h5>
+
+        <p>We clip the data into 3-second slices this time.</p>
+      </li>
+      <li>
+        <h5 id="data-cleaning">Data cleaning</h5>
+
+        <p>If a speaker does not speak longer than 1.5 seconds within an audio slice, we remove that. As it turns out, this data cleaning process is quite important for model performance.</p>
+      </li>
+      <li>
+        <h5 id="data-mixture-and-data-augmentation">Data mixture and data augmentation</h5>
+
+        <p>For better performance, we perform the data augmentation here. That is, for each audio signal sequence, we first normalize it:</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s1_target</span> <span class="o">/=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">s1_target</span><span class="p">))</span>
+<span class="n">s2</span> <span class="o">/=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span>
+</code></pre></div>        </div>
+
+        <p>Then, we multiply the two waves with two different ratios that are sampled from a uniform distribution.</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">w1_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">w2_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">s1_target</span> <span class="o">*</span> <span class="n">w1_ratio</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">s2</span> <span class="o">*</span> <span class="n">w2_ratio</span>
+</code></pre></div>        </div>
+
+        <p>After that, the two signals are added up and normalized again:</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mixed</span> <span class="o">=</span> <span class="n">w1</span> <span class="o">+</span> <span class="n">w2</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">mixed</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.1</span>
+<span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">mixed</span> <span class="o">=</span> <span class="n">w1</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span> <span class="n">w2</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span> <span class="n">mixed</span><span class="o">/</span><span class="n">norm</span>
+</code></pre></div>        </div>
+
+        <p>Additionally, we use the Short-time Fourier transform technique to transfer the audio signals to the frequency domain.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <h4 id="model-structure">Model structure</h4>
+
+    <p>The code of this part could be found <a href="https://colab.research.google.com/drive/17KOywcQpox86Ey5CMGkioN-f5xWUBpTz?usp=sharing">here</a>. For the model input, we also need to specify the target speaker. In this condition, an embedding vector that specifies the speaker is utilized as an extra input. For more details of this model, please refer to the original paper and our modified code. Here is the model structure:</p>
+
+    <p>
+ <img src="model (9).png" />
+</p>
+
+    <p>Note that we mainly modify the original model structure in the following ways.</p>
+
+    <ol>
+      <li>Add another bidirectional LSTM to enhance the model ability</li>
+      <li>The attention mechanism is implemented so that the model could focus on different parts of the CNN output when it generates the mask. (If you do not understand what the mask is, please read google’s paper first!)</li>
+    </ol>
+  </li>
+</ol>
+
+
+      </section>
+      <footer>
+
+          <p>Project maintained by <a href="https://github.com/pren1">pren1</a></p>
+
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+
+
+  </body>
+</html>
