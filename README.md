@@ -1,59 +1,55 @@
-### Bilingual version readme
-
-[Chinese version](https://github.com/pren1/VAST/blob/master/README.zh.md)
-
 ### Demo
 
-You could find the demo and documentation at [here](https://pren1.github.io/VAST/)
+你可以在[这里](https://pren1.github.io/VAST/)找到demo和文档
 
-### Introduction
+### 介绍
 
-When the vtubers are streaming together, their voices sometimes get mixed. In this condition, it could be hard for the fansub members to figure out what the target vtuber is saying. So, we would like to propose a model that could filter the voices that come from different vtubers. In this way, the heavy burden of the fansub could get relieved. Thus, in this project, we come up with a model that could filter the mixed two vtuber voices. More vtubers will be taken into consideration in future work. Besides, we need more people to contribute to this project. Please feel free to contact me if you are willing to waste your time on these things :D
+Vtuber 联动时声音会混在一起，而这会对字幕组的工作造成困难。为了解决这个问题，我们提出了一个可以分离不同vtuber声音的模型。目前模型可以分离白上吹雪和夏色祭混合起来的声音，多个Vtuber的声音混合问题将会在下一步解决。顺便，诚招愿意在本项目上浪费时间的人。
 
-### Related work
+### 相关工作
 
-The main idea of this model comes from the [Google paper](https://arxiv.org/abs/1810.04826). In this paper, the authors are able to filter a specific person's voice using the d-vector as an extra input. The PyTorch code of this paper exists [here](https://github.com/mindslab-ai/voicefilter.git). However, we found that their model does not really work for the Japanese vtubers. That is, the dataset they used is not suitable for our task. So, it becomes necessary for us to build the dataset from scratch and modify the model to pursue better performance.
+本模型来源于谷歌的[这篇](https://pren1.github.io/VAST/)论文。该论文提供了相关的Pytorch[代码](https://github.com/mindslab-ai/voicefilter.git)。然而，因为数据库等等原因，我们发现该模型并不能直接用于Vtuber语音分离。因此，本项目从头对数据库进行了建立，并且对模型进行了优化更改。
 
-### Process pipline
+### 项目流程
 
-1. #### Data collection
+1. #### 数据收集
 
-   The code of this part could be found [here](https://colab.research.google.com/drive/1LYtwVfCYxlKUDYotXq-dauGZZ4aH-pix?usp=sharing).
+   可以在[这里](https://colab.research.google.com/drive/1LYtwVfCYxlKUDYotXq-dauGZZ4aH-pix?usp=sharing)找到相关代码.
 
-   1. ##### Data selection
+   1. ##### 数据选择
 
-      So, suppose we would like to filter the mixed voices from speakers A and B. To do this, we first need to obtain the audio that only contains A's voice and B's voice. Then, as presented in the voice filter paper, one could easily mix the two person's voices and build a synthesis dataset to train the model. Thus, at the very beginning, we need to select the data by ourselves. That is, we go to youtube and find the videos that meet the requirement above.
+      假设说话人A和B的声音混了起来，而我们要对他们的声音进行分离。首先，我们要获取只包含说话人A或说话人B的音轨。然后，如同谷歌的论文所指导，两种音轨将会被混合以用于训练。因此，我们需要首先人工选取音轨。在本项目中，音轨选自Vtuber的youtube相关频道。
 
-   2. ##### Data download
+   2. ##### 数据下载
 
-      The youtube-dl is utilized here. We directly extract the opus format audio using the --extract-audio command provided by the youtube-dl.
+      本项目应用youtube-dl进行下载。利用 --extract-audio 选项，我们可以直接从视频中提取opus格式的音频。
 
-   3. ##### Audio signal processing
+   3. ##### 语音信号处理
 
-      Since the videos may contain background music, one should remove the bgm first. Fortunately, the [Spleeter model](https://github.com/deezer/spleeter.git) is ready to use, and it works well. The audios are then split and downsampled from 48000Hz to 8000Hz.
+      因为音频可能会包含背景音乐，本项目使用现成的Spleeter模型进行背景音乐分离。之后，48000Hz的音频被降采样到8000Hz。
 
-2. #### Build dataset
+2. #### 数据库构建
 
-   The code of this part could be found [here](https://colab.research.google.com/drive/1m-UXb9fIFwFDEANQf3eBLFopsmFgbtSd?usp=sharing).
+   可以在[这里](https://colab.research.google.com/drive/1m-UXb9fIFwFDEANQf3eBLFopsmFgbtSd?usp=sharing)找到相关代码.
 
-   1. ##### Clip data
+   1. ##### 数据分割
 
-      We clip the data into 3-second slices this time.
+      数据被切成三秒长的小段。
 
-   2. ##### Data cleaning
+   2. ##### 数据清洗
 
-      If a speaker does not speak longer than 1.5 seconds within an audio slice, we remove that. As it turns out, this data cleaning process is quite important for model performance.
+      如果一小段语音中有一半时间没人说话，则舍弃之。从结果而言，这部分对模型表现非常重要。
 
-   3. ##### Data mixture and data augmentation
+   3. ##### 数据混合与数据增强
 
-      For better performance, we perform the data augmentation here. That is, for each audio signal sequence, we first normalize it:
+      首先，来自两个人的数据信号被归一化：
 
       ```python
       s1_target /= np.max(np.abs(s1_target))
       s2 /= np.max(np.abs(s2))
       ```
 
-      Then, we multiply the two waves with two different ratios that are sampled from a uniform distribution. 
+      然后，每条数据信号都按比例缩放。缩放比例来自一个连续型均匀分布。
 
       ```python
       w1_ratio = np.random.uniform(low=0.05, high=1.2)
@@ -62,7 +58,7 @@ The main idea of this model comes from the [Google paper](https://arxiv.org/abs/
       w2 = s2 * w2_ratio
       ```
 
-      After that, the two signals are added up and normalized again:
+      之后，来自不同vtuber的数据信号被相加，并且进一步归一化：
 
       ```python
       mixed = w1 + w2
@@ -70,17 +66,16 @@ The main idea of this model comes from the [Google paper](https://arxiv.org/abs/
       w1, w2, mixed = w1/norm, w2/norm, mixed/norm
       ```
 
-      Additionally, we use the Short-time Fourier transform technique to transfer the audio signals to the frequency domain.
+      再然后，运用短时傅里叶变换将音频信号转入频域。
 
-3. #### Model structure
+3. #### 模型结构
 
-   The code of this part could be found [here](https://colab.research.google.com/drive/17KOywcQpox86Ey5CMGkioN-f5xWUBpTz?usp=sharing). For the model input, we also need to specify the target speaker. In this condition, an embedding vector that specifies the speaker is utilized as an extra input. For more details of this model, please refer to the original paper and our modified code. Here is the model structure:
+   这部分的相关代码可以在[这里](https://colab.research.google.com/drive/17KOywcQpox86Ey5CMGkioN-f5xWUBpTz?usp=sharing)找到。需要注意的是，模型的输入中包含了一个代表说话人的映射向量。输入的说话人映射向量不同，模型分离出的说话人也将不同。如果想要得知更多的细节，请参照原论文以及我们修改过的模型代码。这是模型结构图：
 
    <p>
     <img src="docs/model (9).png"/>
    </p>
+   我们主要对原始模型做了以下更改：
 
-   Note that we mainly modify the original model structure in the following ways.
-
-   1. Add another bidirectional LSTM to enhance the model ability
-   2. The attention mechanism is implemented so that the model could focus on different parts of the CNN output when it generates the mask. (If you do not understand what the mask is, please read google's paper first!)
+   1. 增加了一个双向长短期记忆层。
+   2. 应用了注意力机制。当模型产生遮罩时，它可以对卷积神经网络的输出分配不同的权重。（如果你看不懂这里的遮罩是什么，那证明你需要先去阅读谷歌的论文）
