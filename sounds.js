@@ -1,6 +1,6 @@
 var sounds = {
-  "dead" : {
-    url : "sounds/dead.wav"
+  "fbk_1" : {
+    url : "sounds/fbk_1.wav"
   },
   "smash" : {
     url : "sounds/smash.mp3",
