@@ -1,5 +1,7 @@
 ### Demo
 
+The following examples come from real videos. As we can see, the voices from the two vtubers get filtered properly. 
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -24,38 +26,38 @@
   <body>
     <table style="width:100%">
       <tr>
-        <th>mixed voice</th>
+        <th>Mixed voice</th>
         <th>白上フブキ</th> 
         <th>夏色まつり</th>
       </tr>
       <tr>
-        <td><a href="#" onclick="playSound('mix_6'); return false;">example_1</a></td>
-        <td><a href="#" onclick="playSound('fbk_6'); return false;">fbk_1</a></td>
+        <td><a href="#" onclick="playSound('mix_6'); return false;">Example_1</a></td>
+        <td><a href="#" onclick="playSound('fbk_6'); return false;">Fbk_1</a></td>
         <td><a href="#" onclick="playSound('mazili_6'); return false;">Matsuri_1</a></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="playSound('mix_5'); return false;">example_2</a></td>
-        <td><a href="#" onclick="playSound('fbk_5'); return false;">fbk_2</a></td>
+        <td><a href="#" onclick="playSound('mix_5'); return false;">Example_2</a></td>
+        <td><a href="#" onclick="playSound('fbk_5'); return false;">Fbk_2</a></td>
         <td><a href="#" onclick="playSound('mazili_5'); return false;">Matsuri_2</a></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="playSound('mix_3'); return false;">example_3</a></td>
-        <td><a href="#" onclick="playSound('fbk_3'); return false;">fbk_3</a></td>
+        <td><a href="#" onclick="playSound('mix_3'); return false;">Example_3</a></td>
+        <td><a href="#" onclick="playSound('fbk_3'); return false;">Fbk_3</a></td>
         <td><a href="#" onclick="playSound('mazili_3'); return false;">Matsuri_3</a></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="playSound('mix_4'); return false;">example_4</a></td>
-        <td><a href="#" onclick="playSound('fbk_4'); return false;">fbk_4</a></td>
+        <td><a href="#" onclick="playSound('mix_4'); return false;">Example_4</a></td>
+        <td><a href="#" onclick="playSound('fbk_4'); return false;">Fbk_4</a></td>
         <td><a href="#" onclick="playSound('mazili_4'); return false;">Matsuri_4</a></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="playSound('mix_2'); return false;">example_5</a></td>
-        <td><a href="#" onclick="playSound('fbk_2'); return false;">fbk_5</a></td>
+        <td><a href="#" onclick="playSound('mix_2'); return false;">Example_5</a></td>
+        <td><a href="#" onclick="playSound('fbk_2'); return false;">Fbk_5</a></td>
         <td><a href="#" onclick="playSound('mazili_2'); return false;">Matsuri_5</a></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="playSound('mix_1'); return false;">example_6</a></td>
-        <td><a href="#" onclick="playSound('fbk_1'); return false;">fbk_6</a></td>
+        <td><a href="#" onclick="playSound('mix_1'); return false;">Example_6</a></td>
+        <td><a href="#" onclick="playSound('fbk_1'); return false;">Fbk_6</a></td>
         <td><a href="#" onclick="playSound('mazili_1'); return false;">Matsuri_6</a></td>
       </tr>
     </table>
