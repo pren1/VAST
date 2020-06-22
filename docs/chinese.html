@@ -54,7 +54,8 @@
       </header>
       <section>
         <img src="show_image.jpg" />
-        <h3 id="demo">Demo</h3>
+      <br />
+      <h2 id="demo">Demo</h2>
 
 <p>以下例子来自真实联动视频。正如我们将要看到的，模型成功的分离了两个vtuber的声音。</p>
 
@@ -122,15 +123,15 @@
   </body>
 </html>
 
-<h3 id="introduction">介绍</h3>
+<h2 id="introduction">介绍</h2>
 
 <p>Vtuber 联动时声音会混在一起，而这会对字幕组的工作造成困难。为了解决这个问题，我们提出了一个可以分离不同vtuber声音的模型。目前模型可以分离白上吹雪和夏色祭混合起来的声音，多个Vtuber的声音混合问题将会在下一步解决。顺便，诚招愿意在本项目上浪费时间的人。</p>
 
-<h3 id="related-work">相关工作</h3>
+<h2 id="related-work">相关工作</h2>
 
 <p>本模型来源于谷歌的<a href="https://arxiv.org/abs/1810.04826">这篇</a>论文。该论文提供了相关的Pytorch<a href="https://github.com/mindslab-ai/voicefilter.git">代码</a>。然而，因为数据库等等原因，我们发现该模型并不能直接用于Vtuber语音分离。因此，本项目从头对数据库进行了建立，并且对模型进行了优化更改。</p>
 
-<h3 id="process-pipline">项目流程</h3>
+<h2 id="process-pipline">项目流程</h2>
 
 <ol>
   <li>
