@@ -1036,11 +1036,11 @@ class LSTMCell(LayerRNNCell):
     num_proj = self._num_units if self._num_proj is None else self._num_proj
     sigmoid = math_ops.sigmoid
 
-    if self._state_is_tuple:
+    if False:
       (c_prev, m_prev) = state
     else:
       c_prev = array_ops.slice(state, [0, 0], [-1, self._num_units])
-      m_prev = array_ops.slice(state, [0, self._num_units], [-1, num_proj])
+      m_prev = array_ops.slice(state, [0, 256], [-1, 256])
     input_size = inputs.get_shape().with_rank(2).dims[1].value
     if input_size is None:
       raise ValueError("Could not infer input size from inputs.get_shape()[-1]")
