@@ -945,7 +945,7 @@ class LSTMCell(LayerRNNCell):
     )
     self._weights_uq = self.add_variable(
         'uq',
-        shape=[4840, 256],
+        shape=[256, 4840],
         initializer=tf.random_normal_initializer(stddev=0.01)
     )
     self._weights_wt = self.add_variable(
@@ -983,17 +983,17 @@ class LSTMCell(LayerRNNCell):
   # Custom attention model inside
   def attention_model(self, previous_states, data):
     '(?, 10) -> (10, ?)'
-    previous_states = tf.transpose(previous_states, perm=[1, 0])
+    # previous_states = tf.transpose(previous_states, perm=[1, 0])
     # expend the data to make sure equality
     data = tf.expand_dims(data, axis=1)
     'x: (?, 1, 6) * (1 * 6) -> (?, 1, 6)'
     middle1 = tf.multiply(data, self._weights_wq)
-    '(6, 10) * (10, ?) -> (6, ?)'
-    middle2 = tf.tensordot(self._weights_uq, previous_states, axes=[[1], [0]])
-    '(6, 1, ?)'
-    middle2 = tf.expand_dims(middle2, axis=1)
+    '(?, 10) * (10, 6) -> (?, 6)'
+    middle2 = tf.tensordot(previous_states, self._weights_uq, axes=[[1], [0]])
     '(?, 1, 6)'
-    middle2 = tf.transpose(middle2, perm=[2, 1, 0])
+    middle2 = tf.expand_dims(middle2, axis=1)
+    # '(?, 1, 6)'
+    # middle2 = tf.transpose(middle2, perm=[2, 1, 0])
     return tf.squeeze(middle2, axis=1)
     # '(?, 1, 6) + (?, 1, 6) + (6) -> (?, 1, 6)'
     # middle3 = tf.add(middle1, middle2) + self._biases_bq
