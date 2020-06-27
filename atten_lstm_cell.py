@@ -988,7 +988,7 @@ class LSTMCell(LayerRNNCell):
     data = tf.expand_dims(data, axis=1)
     'x: (?, 1, 6) * (1 * 6) -> (?, 1, 6)'
     middle1 = tf.multiply(data, self._weights_wq)
-    return middle1
+    return tf.squeeze(middle1, axis=1)
     # '(6, 10) * (10, ?) -> (6, ?)'
     # middle2 = tf.tensordot(self._weights_uq, previous_states, axes=[[1], [0]])
     # '(6, 1, ?)'
