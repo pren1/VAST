@@ -987,24 +987,25 @@ class LSTMCell(LayerRNNCell):
     # expend the data to make sure equality
     data = tf.expand_dims(data, axis=1)
     'x: (?, 1, 6) * (1 * 6) -> (?, 1, 6)'
-    middle1 = data * self._weights_wq
-    '(6, 10) * (10, ?) -> (6, ?)'
-    middle2 = tf.tensordot(self._weights_uq, previous_states, axes=[[1], [0]])
-    '(6, 1, ?)'
-    middle2 = tf.expand_dims(middle2, axis=1)
-    '(?, 1, 6)'
-    middle2 = tf.transpose(middle2, perm=[2, 1, 0])
-    '(?, 1, 6) + (?, 1, 6) + (6) -> (?, 1, 6)'
-    middle3 = tf.add(middle1, middle2) + self._biases_bq
-    # tanh for non-linearity
-    '(?, 1, 6)'
-    middle4 = self._weights_wt * tf.tanh(middle3)
-    # perform softmax on the last dimention
-    '(?, 1, 6)'
-    middle5 = tf.nn.softmax(middle4, axis=-1)
-    adv_data = tf.multiply(data, middle5)
-    adv_data = tf.squeeze(adv_data, axis=1)
-    return adv_data
+    middle1 = tf.multiply(data, self._weights_wq)
+    return middle1
+    # '(6, 10) * (10, ?) -> (6, ?)'
+    # middle2 = tf.tensordot(self._weights_uq, previous_states, axes=[[1], [0]])
+    # '(6, 1, ?)'
+    # middle2 = tf.expand_dims(middle2, axis=1)
+    # '(?, 1, 6)'
+    # middle2 = tf.transpose(middle2, perm=[2, 1, 0])
+    # '(?, 1, 6) + (?, 1, 6) + (6) -> (?, 1, 6)'
+    # middle3 = tf.add(middle1, middle2) + self._biases_bq
+    # # tanh for non-linearity
+    # '(?, 1, 6)'
+    # middle4 = tf.multiply(self._weights_wt, tf.tanh(middle3))
+    # # perform softmax on the last dimention
+    # '(?, 1, 6)'
+    # middle5 = tf.nn.softmax(middle4, axis=-1)
+    # adv_data = tf.multiply(data, middle5)
+    # adv_data = tf.squeeze(adv_data, axis=1)
+    # return adv_data
 
   def call(self, inputs, state):
     """Run one step of LSTM.
