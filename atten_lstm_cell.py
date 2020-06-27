@@ -940,22 +940,22 @@ class LSTMCell(LayerRNNCell):
 
     self._weights_wq = self.add_variable(
         'wq',
-        shape=[1, input_depth],
+        shape=[1, 4840],
         initializer=tf.random_normal_initializer(stddev=0.01)
     )
     self._weights_uq = self.add_variable(
         'uq',
-        shape=[input_depth, self._num_units],
+        shape=[4840, 512],
         initializer=tf.random_normal_initializer(stddev=0.01)
     )
     self._weights_wt = self.add_variable(
         'wt',
-        shape=[input_depth],
+        shape=[4840],
         initializer=tf.random_normal_initializer(stddev=0.01)
     )
     self._biases_bq = self.add_variable(
         'bq',
-        shape=[input_depth],
+        shape=[4840],
         initializer=tf.random_normal_initializer(stddev=0.01)
     )
 
