@@ -982,9 +982,6 @@ class LSTMCell(LayerRNNCell):
 
   # Custom attention model inside
   def attention_model(self, previous_states, data):
-    previous_states = tf.reshape(
-          previous_states, [-1, 256]
-    )
     '(?, 10) -> (10, ?)'
     # previous_states = tf.transpose(previous_states, perm=[1, 0])
     # expend the data to make sure equality
@@ -992,7 +989,9 @@ class LSTMCell(LayerRNNCell):
     'x: (?, 1, 6) * (1 * 6) -> (?, 1, 6)'
     middle1 = tf.multiply(data, self._weights_wq)
     '(?, 10) * (10, 6) -> (?, 6)'
-    middle2 = tf.tensordot(previous_states, self._weights_uq, axes=[[1], [0]])
+    middle2 = tf.compat.v1.layers.dense(previous_states, 4840)
+
+    # middle2 = tf.tensordot(previous_states, self._weights_uq, axes=[[1], [0]])
     '(?, 1, 6)'
 
     middle2 = tf.expand_dims(middle2, axis=1)
