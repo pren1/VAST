@@ -989,13 +989,13 @@ class LSTMCell(LayerRNNCell):
     'x: (?, 1, 6) * (1 * 6) -> (?, 1, 6)'
     middle1 = tf.multiply(data, self._weights_wq)
     '(?, 10) * (10, 6) -> (?, 6)'
-    # middle2 = tf.tensordot(previous_states, self._weights_uq, axes=[[1], [0]])
+    middle2 = tf.matmul(previous_states, self._weights_uq)
+    '(?, 1, 6)'
+
+    middle2 = tf.expand_dims(middle2, axis=1)
     # '(?, 1, 6)'
-    #
-    # middle2 = tf.expand_dims(middle2, axis=1)
-    # # '(?, 1, 6)'
-    # # middle2 = tf.transpose(middle2, perm=[2, 1, 0])
-    # return tf.squeeze(middle2, axis=1)
+    # middle2 = tf.transpose(middle2, perm=[2, 1, 0])
+    return tf.squeeze(middle2, axis=1)
     # '(?, 1, 6) + (?, 1, 6) + (6) -> (?, 1, 6)'
     # middle3 = tf.add(middle1, middle2) + self._biases_bq
     # # tanh for non-linearity
