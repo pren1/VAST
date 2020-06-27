@@ -991,6 +991,7 @@ class LSTMCell(LayerRNNCell):
     '(?, 10) * (10, 6) -> (?, 6)'
     middle2 = tf.tensordot(previous_states, self._weights_uq, axes=[[1], [0]])
     '(?, 1, 6)'
+
     middle2 = tf.expand_dims(middle2, axis=1)
     # '(?, 1, 6)'
     # middle2 = tf.transpose(middle2, perm=[2, 1, 0])
