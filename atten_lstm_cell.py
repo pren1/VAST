@@ -982,6 +982,9 @@ class LSTMCell(LayerRNNCell):
 
   # Custom attention model inside
   def attention_model(self, previous_states, data):
+    previous_states = tf.reshape(
+          previous_states, [-1, 256]
+    )
     '(?, 10) -> (10, ?)'
     # previous_states = tf.transpose(previous_states, perm=[1, 0])
     # expend the data to make sure equality
@@ -1036,11 +1039,11 @@ class LSTMCell(LayerRNNCell):
     num_proj = self._num_units if self._num_proj is None else self._num_proj
     sigmoid = math_ops.sigmoid
 
-    if False:
+    if self._state_is_tuple:
       (c_prev, m_prev) = state
     else:
       c_prev = array_ops.slice(state, [0, 0], [-1, self._num_units])
-      m_prev = array_ops.slice(state, [0, 256], [-1, 256])
+      m_prev = array_ops.slice(state, [0, self._num_units], [-1, num_proj])
     input_size = inputs.get_shape().with_rank(2).dims[1].value
     if input_size is None:
       raise ValueError("Could not infer input size from inputs.get_shape()[-1]")
