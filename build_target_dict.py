@@ -2,7 +2,7 @@ import csv
 import numpy as np
 import pdb
 from util import save_data_array_as_npy
-
+import pandas as pd
 
 def read_target_csv(path_to_csv):
 	# read in target csv, and return azimuth data and original labels in azimuth files
@@ -14,20 +14,30 @@ def read_target_csv(path_to_csv):
 		dataset = [row[0] for row in reader]
 	return np.asarray(dataset)
 
-output_dict = {'宝鐘マリン': [],
-               '白上フブキ': [],
-               '天音かなた': [],
-               '夏色まつり': []}
+target_path = "target_link.csv"
+df = pd.read_csv(target_path, header=None)
 
-output_dict = {'白上フブキ': [],
-               '夏色まつり': []}
+output_dict = {}
 
-root_path = 'Name_CSV/'
+for index in range(len(df)):
+	line = df.loc[index]
+	output_dict[line[0]] = line[1:].tolist()
+save_data_array_as_npy(output_dict, "multiple_name_dict")
 
-for key in output_dict:
-	path = root_path + key + ".csv"
-	result = read_target_csv(path)
-	output_dict[key] = result
-
-save_data_array_as_npy(output_dict, "file_name_dict")
+# output_dict = {'宝鐘マリン': [],
+#                '白上フブキ': [],
+#                '天音かなた': [],
+#                '夏色まつり': []}
+#
+# output_dict = {'白上フブキ': [],
+#                '夏色まつり': []}
+#
+# root_path = 'Name_CSV/'
+#
+# for key in output_dict:
+# 	path = root_path + key + ".csv"
+# 	result = read_target_csv(path)
+# 	output_dict[key] = result
+#
+# save_data_array_as_npy(output_dict, "file_name_dict")
 
