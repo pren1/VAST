@@ -31,8 +31,6 @@ for index in range(len(df)):
 	else:
 		aug_output_dict[line[0]] = aug_line[1:-1].tolist()
 
-pdb.set_trace()
-
 save_data_array_as_npy(aug_output_dict, "aug_multiple_name_dict")
 
 # output_dict = {'宝鐘マリン': [],
