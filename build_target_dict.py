@@ -17,12 +17,23 @@ def read_target_csv(path_to_csv):
 target_path = "target_link.csv"
 df = pd.read_csv(target_path, header=None)
 
-output_dict = {}
+aug_df = pd.read_csv("aug_target_link.csv", header=None)
+aug_output_dict = {}
 
+output_dict = {}
 for index in range(len(df)):
 	line = df.loc[index]
 	output_dict[line[0]] = line[1:].tolist()
-save_data_array_as_npy(output_dict, "multiple_name_dict")
+
+	aug_line = aug_df.loc[index]
+	if index == 0:
+		aug_output_dict[line[0]] = aug_line[1:].tolist()
+	else:
+		aug_output_dict[line[0]] = aug_line[1:-1].tolist()
+
+pdb.set_trace()
+
+save_data_array_as_npy(aug_output_dict, "aug_multiple_name_dict")
 
 # output_dict = {'宝鐘マリン': [],
 #                '白上フブキ': [],
