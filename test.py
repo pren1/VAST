@@ -11,12 +11,12 @@ import librosa
 
 create_folders("audio")
 for single_key in name_dict:
-  create_folders(f"/content/audio/{single_key}/")
+  create_folders(f"/audio/{single_key}/")
   file_list = name_dict[single_key]
   for single_file in file_list:
     print(single_file)
+    os.system(f"youtube-dl --extract-audio -o '/audio/{single_key}/%(title)s.%(ext)s' {single_file}")
     pdb.set_trace()
-    os.system(f"youtube-dl --extract-audio -o '/content/audio/{single_key}/%(title)s.%(ext)s' {single_file}")
 #     os.system(f"youtube-dl --extract-audio -o /content/audio/白上吹雪/%(title)s.%(ext)s 'https://www.youtube.com/playlist?list=PL6sZ3uYmeG1vDQ-jvuaMA1hl3GvcHyMcp'")
 #
 # os.system("youtube-dl --get-filename -o '%(title)s.%(ext)s' https://www.youtube.com/watch?v=D4bjfOkb9GM&list=PLKo9UD3uKyyFxwwUwt3EBf5_ehCNic5tx")
@@ -27,7 +27,7 @@ import pprint
 'rebuild dict according to the files in folder'
 rebuilt_dict = {}
 for single_key in name_dict:
-  rebuilt_dict[single_key] = files_in_target_folder(f'/content/audio/{single_key}/')
+  rebuilt_dict[single_key] = files_in_target_folder(f'/audio/{single_key}/')
 # total_files = files_in_target_folder('/content/audio')
 pprint.pprint(rebuilt_dict)
 
