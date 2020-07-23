@@ -3,7 +3,7 @@
 # pip install pyvad
 # pip3 install --upgrade youtube-dl
 
-from VAST.util import *
+from util import *
 import os
 name_dict = return_download_dict('VAST/file_name_dict.npy').tolist()
 import pdb
