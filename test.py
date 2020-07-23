@@ -5,18 +5,18 @@
 
 from util import *
 import os
-name_dict = return_download_dict('VAST/file_name_dict.npy').tolist()
+name_dict = return_download_dict('file_name_dict.npy').tolist()
 import pdb
 import librosa
 
 create_folders("audio")
-for single_key in name_dict:
-  create_folders(f"/content/audio/{single_key}/")
-  file_list = name_dict[single_key]
-  for single_file in file_list:
-    print(single_file)
-    os.system(f"!youtube-dl --extract-audio -o /content/audio/{single_key}/%(title)s.%(ext)s {single_file}")
-    pdb.set_trace()
+# for single_key in name_dict:
+#   create_folders(f"/content/audio/{single_key}/")
+#   file_list = name_dict[single_key]
+#   for single_file in file_list:
+#     print(single_file)
+#     os.system(f"youtube-dl --extract-audio -o /content/audio/{single_key}/%(title)s.%(ext)s {single_file}")
+#     pdb.set_trace()
 
 import pprint
 'rebuild dict according to the files in folder'
