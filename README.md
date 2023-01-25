@@ -1,6 +1,6 @@
-### Bilingual version readme
+### readme
 
-[Chinese version](https://github.com/pren1/VAST/blob/master/README.zh.md)
+[Chinese version](https://github.com/pren1/VAST/blob/master/README_CN.md)
 
 ### Demo
 
