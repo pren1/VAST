@@ -1,4 +1,4 @@
-### readme
+### Readme
 
 [Chinese version](https://github.com/pren1/VAST/blob/master/README_CN.md)
 
